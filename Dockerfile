@@ -1,4 +1,5 @@
 # Use official Java runtime
+FROM maven:3.8.6-eclipse-temurin-17 AS build
 FROM openjdk:17-jdk-slim
 
 # Set working directory
