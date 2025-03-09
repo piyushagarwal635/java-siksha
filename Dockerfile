@@ -1,18 +1,24 @@
-# Use official Java runtime
+# Step 1: Use Maven image to build the JAR
 FROM maven:3.8.6-eclipse-temurin-17 AS build
-FROM openjdk:17-jdk-slim
 
-# Set working directory
 WORKDIR /app
 
-# Copy project files
+# Step 2: Copy project files
 COPY . .
 
-# Build the application (Works on both Windows & Linux)
+# Step 3: Build the Spring Boot project
 RUN mvn clean package -DskipTests
 
-# Copy the generated JAR file
-COPY target/*.jar app.jar
+# Step 4: Use a smaller JDK image to run the JAR
+FROM eclipse-temurin:17-jdk
+
+WORKDIR /app
+
+# Copy built JAR from previous stage
+COPY --from=build /app/target/*.jar app.jar
+
+# Expose application port
+EXPOSE 8080
 
 # Run the application
 CMD ["java", "-jar", "app.jar"]
