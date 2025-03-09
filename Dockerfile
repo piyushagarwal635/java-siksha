@@ -1,5 +1,5 @@
 # Step 1: Use Maven image to build the JAR
-FROM maven:3.8.6-eclipse-temurin-23 AS build
+FROM maven:3.8.6-eclipse-temurin-21 AS build
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 # Step 4: Use a smaller JDK image to run the JAR
-FROM eclipse-temurin:23-jdk
+FROM eclipse-temurin:21-jdk
 
 WORKDIR /app
 
