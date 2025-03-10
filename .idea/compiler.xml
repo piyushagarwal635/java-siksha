@@ -8,9 +8,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Siksha-Setu (1)" />
-        <module name="Siksha-Setu" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Siksha-Setu" target="23" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
